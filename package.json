@@ -2,6 +2,7 @@
   "name": "flashcards-workshop-web",
   "private": true,
   "version": "0.0.0",
+  "packageManager": "yarn@4.6.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
