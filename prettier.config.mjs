@@ -9,7 +9,9 @@ const config = {
   printWidth: 100,
   tabWidth: 2,
   useTabs: false,
-  plugins: ['@trivago/prettier-plugin-sort-imports'],
+  plugins: ['@trivago/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss'],
+  tailwindStylesheet: './src/global.css',
+  tailwindFunctions: ['clsx', 'cva'],
   importOrder: ['^react$', '<THIRD_PARTY_MODULES>', '^@/(.*)$', '^../(.*)$', '^./(.*)$'],
   importOrderSeparation: true,
 };
