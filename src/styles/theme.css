@@ -11,3 +11,10 @@
 @theme {
   --font-sans: 'Jost', sans-serif;
 }
+
+/* Breakpoints */
+@theme inline static {
+  --breakpoint-tablet: var(--breakpoint-md);
+  --breakpoint-laptop: var(--breakpoint-lg);
+  --breakpoint-desktop: var(--breakpoint-xl);
+}

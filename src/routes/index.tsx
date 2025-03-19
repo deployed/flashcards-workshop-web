@@ -1,13 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router';
 
+import { WaveBackground } from '@/components/backgrounds/WaveBackground';
+
 export const Route = createFileRoute('/')({
   component: Index,
 });
 
 function Index() {
   return (
-    <div className="p-2">
-      <h3>Welcome Home!</h3>
-    </div>
+    <main>
+      <WaveBackground variant="top" />
+    </main>
   );
 }

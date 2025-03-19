@@ -1,0 +1,12 @@
+<svg width="100%" height="100%" viewBox="0 0 390 390" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="none">
+    <path d="
+        M0 255
+        L0 0
+        L390 0
+        L390 390
+        C390 390 298 390 240 315
+        C180 240 142 255 104 255
+        L0 255
+        Z" />
+</svg>
