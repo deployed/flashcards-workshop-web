@@ -1,3 +1,7 @@
 @utility z-background {
   z-index: -9999;
 }
+
+@utility full-parent {
+  @apply absolute bottom-0 left-0 right-0 top-0;
+}

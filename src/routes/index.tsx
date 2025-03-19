@@ -1,5 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 
+import { Button } from '@/components/Button';
+import { Logo } from '@/components/Logo';
 import { WaveBackground } from '@/components/backgrounds/WaveBackground';
 
 export const Route = createFileRoute('/')({
@@ -8,8 +10,12 @@ export const Route = createFileRoute('/')({
 
 function Index() {
   return (
-    <main>
+    <>
       <WaveBackground variant="top" />
-    </main>
+      <main className="my-15 mx-auto">
+        <Logo />
+        <Button>Click me</Button>
+      </main>
+    </>
   );
 }
