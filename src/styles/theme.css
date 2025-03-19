@@ -1,0 +1,13 @@
+/* Colors */
+@theme {
+  --color-*: initial;
+  --color-primary: oklch(26.23% 0.0762 264.13);
+  --color-secondary: oklch(39.46% 0.0854 265.59);
+  --color-neutral: oklch(100% 0 0);
+  --color-background: oklch(89.6% 0.054363 18.2158);
+}
+
+/* Typography */
+@theme {
+  --font-sans: 'Jost', sans-serif;
+}
