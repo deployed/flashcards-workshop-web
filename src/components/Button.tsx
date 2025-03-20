@@ -11,6 +11,7 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         default: 'min-w-[130px] bg-primary text-neutral hover:bg-primary/90',
+        outlined: 'min-w-[130px] border border-primary text-primary hover:bg-primary/10',
       },
       size: {
         default: 'h-10 px-4 py-2',

@@ -11,20 +11,27 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as FlashcardsSetsImport } from './routes/flashcards-sets'
 import { Route as IndexImport } from './routes/index'
+import { Route as FlashcardsSetsIndexImport } from './routes/flashcards-sets.index'
+import { Route as FlashcardsSetsCreateImport } from './routes/flashcards-sets.create'
 
 // Create/Update Routes
-
-const FlashcardsSetsRoute = FlashcardsSetsImport.update({
-  id: '/flashcards-sets',
-  path: '/flashcards-sets',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FlashcardsSetsIndexRoute = FlashcardsSetsIndexImport.update({
+  id: '/flashcards-sets/',
+  path: '/flashcards-sets/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FlashcardsSetsCreateRoute = FlashcardsSetsCreateImport.update({
+  id: '/flashcards-sets/create',
+  path: '/flashcards-sets/create',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,11 +46,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/flashcards-sets': {
-      id: '/flashcards-sets'
+    '/flashcards-sets/create': {
+      id: '/flashcards-sets/create'
+      path: '/flashcards-sets/create'
+      fullPath: '/flashcards-sets/create'
+      preLoaderRoute: typeof FlashcardsSetsCreateImport
+      parentRoute: typeof rootRoute
+    }
+    '/flashcards-sets/': {
+      id: '/flashcards-sets/'
       path: '/flashcards-sets'
       fullPath: '/flashcards-sets'
-      preLoaderRoute: typeof FlashcardsSetsImport
+      preLoaderRoute: typeof FlashcardsSetsIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -53,37 +67,42 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/flashcards-sets': typeof FlashcardsSetsRoute
+  '/flashcards-sets/create': typeof FlashcardsSetsCreateRoute
+  '/flashcards-sets': typeof FlashcardsSetsIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/flashcards-sets': typeof FlashcardsSetsRoute
+  '/flashcards-sets/create': typeof FlashcardsSetsCreateRoute
+  '/flashcards-sets': typeof FlashcardsSetsIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/flashcards-sets': typeof FlashcardsSetsRoute
+  '/flashcards-sets/create': typeof FlashcardsSetsCreateRoute
+  '/flashcards-sets/': typeof FlashcardsSetsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/flashcards-sets'
+  fullPaths: '/' | '/flashcards-sets/create' | '/flashcards-sets'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/flashcards-sets'
-  id: '__root__' | '/' | '/flashcards-sets'
+  to: '/' | '/flashcards-sets/create' | '/flashcards-sets'
+  id: '__root__' | '/' | '/flashcards-sets/create' | '/flashcards-sets/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  FlashcardsSetsRoute: typeof FlashcardsSetsRoute
+  FlashcardsSetsCreateRoute: typeof FlashcardsSetsCreateRoute
+  FlashcardsSetsIndexRoute: typeof FlashcardsSetsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  FlashcardsSetsRoute: FlashcardsSetsRoute,
+  FlashcardsSetsCreateRoute: FlashcardsSetsCreateRoute,
+  FlashcardsSetsIndexRoute: FlashcardsSetsIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,14 +116,18 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/flashcards-sets"
+        "/flashcards-sets/create",
+        "/flashcards-sets/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/flashcards-sets": {
-      "filePath": "flashcards-sets.tsx"
+    "/flashcards-sets/create": {
+      "filePath": "flashcards-sets.create.tsx"
+    },
+    "/flashcards-sets/": {
+      "filePath": "flashcards-sets.index.tsx"
     }
   }
 }

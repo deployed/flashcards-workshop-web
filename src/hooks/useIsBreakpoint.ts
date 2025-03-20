@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 
 function getBreakpointValue(breakpoint: string): string {
   if (typeof window !== 'undefined') {
-    console.log(getComputedStyle(document.documentElement));
     return getComputedStyle(document.documentElement).getPropertyValue(breakpoint).trim();
   }
   return '';

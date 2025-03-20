@@ -7,7 +7,7 @@ import { ScrollArea } from '@/components/ScrollArea';
 import { Text } from '@/components/Text';
 import { WaveBackground } from '@/components/backgrounds/WaveBackground';
 
-export const Route = createFileRoute('/flashcards-sets')({
+export const Route = createFileRoute('/flashcards-sets/')({
   component: RouteComponent,
   loader: ({ context: { queryClient } }) => loadFlashcardSets(queryClient),
 });
