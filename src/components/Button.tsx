@@ -15,6 +15,7 @@ export const buttonVariants = cva(
       },
       size: {
         default: 'h-10 px-4 py-2',
+        large: 'h-10 w-[60vw] px-4 py-2 laptop:w-[30vw]',
       },
     },
     defaultVariants: {

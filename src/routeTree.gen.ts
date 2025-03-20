@@ -12,8 +12,9 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-import { Route as FlashcardsSetsIndexImport } from './routes/flashcards-sets.index'
-import { Route as FlashcardsSetsCreateImport } from './routes/flashcards-sets.create'
+import { Route as SetsIndexImport } from './routes/sets/index'
+import { Route as SetsSetIdIndexImport } from './routes/sets/$setId.index'
+import { Route as SetsSetIdEditImport } from './routes/sets/$setId.edit'
 
 // Create/Update Routes
 
@@ -23,15 +24,21 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const FlashcardsSetsIndexRoute = FlashcardsSetsIndexImport.update({
-  id: '/flashcards-sets/',
-  path: '/flashcards-sets/',
+const SetsIndexRoute = SetsIndexImport.update({
+  id: '/sets/',
+  path: '/sets/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const FlashcardsSetsCreateRoute = FlashcardsSetsCreateImport.update({
-  id: '/flashcards-sets/create',
-  path: '/flashcards-sets/create',
+const SetsSetIdIndexRoute = SetsSetIdIndexImport.update({
+  id: '/sets/$setId/',
+  path: '/sets/$setId/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SetsSetIdEditRoute = SetsSetIdEditImport.update({
+  id: '/sets/$setId/edit',
+  path: '/sets/$setId/edit',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,18 +53,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/flashcards-sets/create': {
-      id: '/flashcards-sets/create'
-      path: '/flashcards-sets/create'
-      fullPath: '/flashcards-sets/create'
-      preLoaderRoute: typeof FlashcardsSetsCreateImport
+    '/sets/': {
+      id: '/sets/'
+      path: '/sets'
+      fullPath: '/sets'
+      preLoaderRoute: typeof SetsIndexImport
       parentRoute: typeof rootRoute
     }
-    '/flashcards-sets/': {
-      id: '/flashcards-sets/'
-      path: '/flashcards-sets'
-      fullPath: '/flashcards-sets'
-      preLoaderRoute: typeof FlashcardsSetsIndexImport
+    '/sets/$setId/edit': {
+      id: '/sets/$setId/edit'
+      path: '/sets/$setId/edit'
+      fullPath: '/sets/$setId/edit'
+      preLoaderRoute: typeof SetsSetIdEditImport
+      parentRoute: typeof rootRoute
+    }
+    '/sets/$setId/': {
+      id: '/sets/$setId/'
+      path: '/sets/$setId'
+      fullPath: '/sets/$setId'
+      preLoaderRoute: typeof SetsSetIdIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -67,42 +81,47 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/flashcards-sets/create': typeof FlashcardsSetsCreateRoute
-  '/flashcards-sets': typeof FlashcardsSetsIndexRoute
+  '/sets': typeof SetsIndexRoute
+  '/sets/$setId/edit': typeof SetsSetIdEditRoute
+  '/sets/$setId': typeof SetsSetIdIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/flashcards-sets/create': typeof FlashcardsSetsCreateRoute
-  '/flashcards-sets': typeof FlashcardsSetsIndexRoute
+  '/sets': typeof SetsIndexRoute
+  '/sets/$setId/edit': typeof SetsSetIdEditRoute
+  '/sets/$setId': typeof SetsSetIdIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/flashcards-sets/create': typeof FlashcardsSetsCreateRoute
-  '/flashcards-sets/': typeof FlashcardsSetsIndexRoute
+  '/sets/': typeof SetsIndexRoute
+  '/sets/$setId/edit': typeof SetsSetIdEditRoute
+  '/sets/$setId/': typeof SetsSetIdIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/flashcards-sets/create' | '/flashcards-sets'
+  fullPaths: '/' | '/sets' | '/sets/$setId/edit' | '/sets/$setId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/flashcards-sets/create' | '/flashcards-sets'
-  id: '__root__' | '/' | '/flashcards-sets/create' | '/flashcards-sets/'
+  to: '/' | '/sets' | '/sets/$setId/edit' | '/sets/$setId'
+  id: '__root__' | '/' | '/sets/' | '/sets/$setId/edit' | '/sets/$setId/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  FlashcardsSetsCreateRoute: typeof FlashcardsSetsCreateRoute
-  FlashcardsSetsIndexRoute: typeof FlashcardsSetsIndexRoute
+  SetsIndexRoute: typeof SetsIndexRoute
+  SetsSetIdEditRoute: typeof SetsSetIdEditRoute
+  SetsSetIdIndexRoute: typeof SetsSetIdIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  FlashcardsSetsCreateRoute: FlashcardsSetsCreateRoute,
-  FlashcardsSetsIndexRoute: FlashcardsSetsIndexRoute,
+  SetsIndexRoute: SetsIndexRoute,
+  SetsSetIdEditRoute: SetsSetIdEditRoute,
+  SetsSetIdIndexRoute: SetsSetIdIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -116,18 +135,22 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/flashcards-sets/create",
-        "/flashcards-sets/"
+        "/sets/",
+        "/sets/$setId/edit",
+        "/sets/$setId/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/flashcards-sets/create": {
-      "filePath": "flashcards-sets.create.tsx"
+    "/sets/": {
+      "filePath": "sets/index.tsx"
     },
-    "/flashcards-sets/": {
-      "filePath": "flashcards-sets.index.tsx"
+    "/sets/$setId/edit": {
+      "filePath": "sets/$setId.edit.tsx"
+    },
+    "/sets/$setId/": {
+      "filePath": "sets/$setId.index.tsx"
     }
   }
 }

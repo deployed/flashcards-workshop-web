@@ -2,6 +2,7 @@ import { createQueryKeyStore } from '@lukemorales/query-key-factory';
 
 export const queryKeys = createQueryKeyStore({
   flashcardsSets: {
-    list: () => ['flashcards-sets'],
+    list: () => [{}],
+    details: (id: string) => [id],
   },
 });

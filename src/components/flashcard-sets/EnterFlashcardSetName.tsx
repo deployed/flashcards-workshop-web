@@ -30,7 +30,7 @@ export function EnterFlashcardSetName({ children, onSetName }: EnterFlashcardSet
 
   return (
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-      <DialogTrigger>{children}</DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Podaj nazwe zestawu</DialogTitle>

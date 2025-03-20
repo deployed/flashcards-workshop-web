@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom/client';
 
 import { queryClient } from '@/api/queryClient';
 
+import { createApiClient } from './api/apiClient';
 // Import the generated route tree
 import { routeTree } from './routeTree.gen';
 import './styles/main.css';
@@ -15,8 +16,8 @@ const router = createRouter({
   routeTree,
   context: {
     queryClient,
+    apiClient: createApiClient(),
   },
-  defaultPreload: 'intent',
   // When using react query, we don't want loader calls to ever be stale
   defaultPreloadStaleTime: 0,
   scrollRestoration: true,
