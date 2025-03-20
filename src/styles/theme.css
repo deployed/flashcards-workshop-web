@@ -13,8 +13,9 @@
 }
 
 /* Breakpoints */
-@theme inline static {
-  --breakpoint-tablet: var(--breakpoint-md);
-  --breakpoint-laptop: var(--breakpoint-lg);
-  --breakpoint-desktop: var(--breakpoint-xl);
+@theme static {
+  /* The same as --breakpoint-md, --breakpoint-lg, --breakpoint-xl but vars are not allowed in media querys */
+  --breakpoint-tablet: 48rem;
+  --breakpoint-laptop: 64rem;
+  --breakpoint-desktop: 80rem;
 }
