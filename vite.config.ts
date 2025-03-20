@@ -14,4 +14,12 @@ export default defineConfig({
     tailwindcss(),
     svgr(),
   ],
+  server: {
+    proxy: {
+      '/api': {
+        target: process.env.VITE_API_URL ?? 'http://localhost:8000',
+        changeOrigin: true,
+      },
+    },
+  },
 });

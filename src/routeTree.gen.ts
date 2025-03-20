@@ -11,9 +11,16 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as FlashcardsSetsImport } from './routes/flashcards-sets'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const FlashcardsSetsRoute = FlashcardsSetsImport.update({
+  id: '/flashcards-sets',
+  path: '/flashcards-sets',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -32,6 +39,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/flashcards-sets': {
+      id: '/flashcards-sets'
+      path: '/flashcards-sets'
+      fullPath: '/flashcards-sets'
+      preLoaderRoute: typeof FlashcardsSetsImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -39,32 +53,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/flashcards-sets': typeof FlashcardsSetsRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/flashcards-sets': typeof FlashcardsSetsRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/flashcards-sets': typeof FlashcardsSetsRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/flashcards-sets'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/flashcards-sets'
+  id: '__root__' | '/' | '/flashcards-sets'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FlashcardsSetsRoute: typeof FlashcardsSetsRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FlashcardsSetsRoute: FlashcardsSetsRoute,
 }
 
 export const routeTree = rootRoute
@@ -77,11 +96,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/flashcards-sets"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/flashcards-sets": {
+      "filePath": "flashcards-sets.tsx"
     }
   }
 }

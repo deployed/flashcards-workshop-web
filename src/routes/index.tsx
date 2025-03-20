@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 
 import { Button } from '@/components/Button';
 import { Logo } from '@/components/Logo';
@@ -13,7 +13,7 @@ function Index() {
   return (
     <>
       <WaveBackground variant="home" />
-      <main className="mx-auto my-15 flex h-full flex-col items-center justify-between laptop:justify-start">
+      <main className="mx-content my-15 flex h-full flex-col items-center justify-between laptop:justify-start">
         <Logo />
         <div className="mx-12 my-20 flex flex-col gap-16 laptop:my-44 laptop:gap-28">
           <div className="flex flex-col items-center gap-content">
@@ -24,7 +24,9 @@ function Index() {
             <Text className="text-center">
               Mając już stworzone fiszki, podejmij wyzwanie i sprawdź czego się nauczyłeś
             </Text>
-            <Button>Sprawdź się</Button>
+            <Button asChild>
+              <Link to="/flashcards-sets">Sprawdź się</Link>
+            </Button>
           </div>
         </div>
       </main>
