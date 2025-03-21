@@ -1,25 +1,16 @@
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 
-import { useCreateFlashcardSet } from '@/api/mutations/hooks/useFlashcardSetsMutation';
 import { WaveBackground } from '@/components/backgrounds/WaveBackground';
 import { Button } from '@/components/base/Button';
 import { Text } from '@/components/base/Text';
 import { Logo } from '@/components/brand/Logo';
-import { EnterFlashcardSetName } from '@/components/flashcard-sets/EnterFlashcardSetName';
+import { CreateFlashcardSet } from '@/components/flashcard-sets/CreateFlashcardSet';
 
 export const Route = createFileRoute('/')({
   component: HomeRoute,
 });
 
 function HomeRoute() {
-  const { mutateAsync: createFlashcardSet } = useCreateFlashcardSet();
-  const navigate = useNavigate({ from: '/' });
-
-  const handleSetCreation = async (name: string) => {
-    const { id } = await createFlashcardSet({ title: name });
-    await navigate({ to: `/sets/$setId`, params: { setId: id.toString() } });
-  };
-
   return (
     <>
       <WaveBackground variant="home" />
@@ -28,9 +19,9 @@ function HomeRoute() {
         <div className="mx-12 my-20 flex flex-col gap-16 laptop:my-44 laptop:gap-28">
           <div className="flex flex-col items-center gap-content">
             <Text>Stwórz swój zestaw fiszek od zera</Text>
-            <EnterFlashcardSetName onSetName={handleSetCreation}>
+            <CreateFlashcardSet>
               <Button>Zacznij Tutaj</Button>
-            </EnterFlashcardSetName>
+            </CreateFlashcardSet>
           </div>
           <div className="flex flex-col items-center gap-content">
             <Text className="text-center">

@@ -37,6 +37,7 @@ function FlashcardSetEdit() {
   const buttonRight = (
     <Chevron
       direction="right"
+      className="ml-auto"
       disabled={!editor.isValid}
       onClick={() => {
         void editor.nextFlashcard();
@@ -76,13 +77,13 @@ function FlashcardSetEdit() {
           </div>
         </div>
 
-        {!isLaptop && (
-          <div className="flex w-full max-w-sm flex-row justify-between px-10">
-            {buttonLeft}
-            {buttonRight}
-          </div>
-        )}
         <div className="mt-auto flex w-sm flex-col gap-content px-10">
+          {!isLaptop && (
+            <div className="flex w-full max-w-sm flex-row">
+              {buttonLeft}
+              {buttonRight}
+            </div>
+          )}
           <Button
             variant="outlined"
             onClick={editor.deleteFlashcard}

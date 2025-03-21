@@ -7,6 +7,7 @@ import { Page, PageContent } from '@/components/base/Page';
 import { ScrollArea } from '@/components/base/ScrollArea';
 import { Text } from '@/components/base/Text';
 import { LogoWithText } from '@/components/brand/Logo';
+import { CreateFlashcardSet } from '@/components/flashcard-sets/CreateFlashcardSet';
 import { BackButton } from '@/components/navigation/BackButton';
 
 export const Route = createFileRoute('/sets/')({
@@ -35,11 +36,13 @@ function SetListRoute() {
                 ))}
               </div>
             </ScrollArea>
-            <Text variant="emphasis" className="text-center" asChild>
-              <Link to="/">Lub stwórz nowe fiszki</Link>
-            </Text>
-          </div>
 
+            <CreateFlashcardSet>
+              <Text variant="emphasis" className="text-center">
+                Lub stwórz nowe fiszki
+              </Text>
+            </CreateFlashcardSet>
+          </div>
           <BackButton />
         </PageContent>
       </Page>
