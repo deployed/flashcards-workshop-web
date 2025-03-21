@@ -4,19 +4,20 @@ import { useRouter } from '@tanstack/react-router';
 
 import { Button } from '@/components/base/Button';
 
-export type BackButtonProps = Omit<ComponentProps<typeof Button>, 'onClick' | 'children'>;
+export type BackButtonProps = ComponentProps<typeof Button>;
 
-export function BackButton(props: BackButtonProps) {
+export function BackButton({ onClick, children, ...rest }: BackButtonProps) {
   const { history } = useRouter();
 
   return (
     <Button
-      onClick={() => {
+      onClick={(e) => {
+        onClick?.(e);
         history.back();
       }}
-      {...props}
+      {...rest}
     >
-      Powrót
+      {children ?? 'Powrót'}
     </Button>
   );
 }

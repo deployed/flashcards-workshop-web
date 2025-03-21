@@ -7,5 +7,5 @@
 }
 
 @utility gap-content {
-  @apply gap-5;
+  @apply gap-5 laptop:gap-10;
 }

@@ -4,7 +4,11 @@ import { useApiClient } from '@/api/apiClient';
 import { queryKeys } from '@/api/cache-keys';
 import type { QueryOptionsParams, PreloadFnParams } from '@/api/types';
 
-import { flashcardSetDetails, flashcardSetsQuery } from '../flashcards-sets';
+import {
+  type FlashcardDetailsQueryParams,
+  flashcardSetDetails,
+  flashcardSetsQuery,
+} from '../flashcards-sets';
 
 function flashcardSetsQueryOptions({ client }: QueryOptionsParams) {
   return queryOptions({
@@ -21,10 +25,6 @@ export function useFlashcardSetsQuery() {
 export async function loadFlashcardSets({ queryClient, apiClient }: PreloadFnParams) {
   await queryClient.ensureQueryData(flashcardSetsQueryOptions({ client: apiClient }));
 }
-
-export type FlashcardDetailsQueryParams = {
-  id: string;
-};
 
 function flashcardSetDetailsQueryOptions({
   client,

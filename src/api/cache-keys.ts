@@ -5,4 +5,7 @@ export const queryKeys = createQueryKeyStore({
     list: () => [{}],
     details: (id: string) => [id],
   },
+  flashcards: {
+    list: (setId: { setId: string }) => [setId],
+  },
 });

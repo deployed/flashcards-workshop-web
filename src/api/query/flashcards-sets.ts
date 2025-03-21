@@ -16,11 +16,15 @@ export async function flashcardSetsQuery({
   }));
 }
 
+export type FlashcardDetailsQueryParams = {
+  id: string;
+};
+
 export async function flashcardSetDetails({
   client,
   signal,
   id,
-}: QueryFnParams<{ id: string }>): Promise<FlashcardSet> {
+}: QueryFnParams<FlashcardDetailsQueryParams>): Promise<FlashcardSet> {
   const response = await client.get<BackendFlashcardSet>(Endpoints.flashcardSets.details(id), {
     signal,
   });
