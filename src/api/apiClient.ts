@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import axios from 'axios';
 
 import { API_URL } from '@/env';
@@ -8,4 +10,8 @@ export function createApiClient() {
   });
 
   return apiClient;
+}
+
+export function useApiClient() {
+  return useMemo(() => createApiClient(), []);
 }

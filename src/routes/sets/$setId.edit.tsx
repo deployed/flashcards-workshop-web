@@ -1,11 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import { BackButton } from '@/components/BackButton';
-import { Button } from '@/components/Button';
-import { Flashcard } from '@/components/Flashcard';
-import { Page } from '@/components/Page';
-import { Text } from '@/components/Text';
 import { WaveBackground } from '@/components/backgrounds/WaveBackground';
+import { Button } from '@/components/base/Button';
+import { Page } from '@/components/base/Page';
+import { Text } from '@/components/base/Text';
+import { Flashcard } from '@/components/flashcards/Flashcard';
+import { BackButton } from '@/components/navigation/BackButton';
 
 export const Route = createFileRoute('/sets/$setId/edit')({
   component: RouteComponent,

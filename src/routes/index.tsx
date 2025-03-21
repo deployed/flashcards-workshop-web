@@ -1,10 +1,10 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 
-import { useCreateFlashcardSet } from '@/api/mutations/flashcards-sets-mutation';
-import { Button } from '@/components/Button';
-import { Logo } from '@/components/Logo';
-import { Text } from '@/components/Text';
+import { useCreateFlashcardSet } from '@/api/mutations/hooks/useFlashcardSetsMutation';
 import { WaveBackground } from '@/components/backgrounds/WaveBackground';
+import { Button } from '@/components/base/Button';
+import { Text } from '@/components/base/Text';
+import { Logo } from '@/components/brand/Logo';
 import { EnterFlashcardSetName } from '@/components/flashcard-sets/EnterFlashcardSetName';
 
 export const Route = createFileRoute('/')({

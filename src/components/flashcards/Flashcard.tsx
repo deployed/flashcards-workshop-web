@@ -1,6 +1,6 @@
 import type { ChangeEvent } from 'react';
 
-import { Text } from '@/components/Text';
+import { Text } from '@/components/base/Text';
 import { cn } from '@/lib/styling';
 
 export type FlashcardProps = {

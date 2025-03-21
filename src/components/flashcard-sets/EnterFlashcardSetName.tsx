@@ -1,6 +1,6 @@
 import { type ReactNode, useId, useState, useEffect } from 'react';
 
-import { Button } from '../Button';
+import { Button } from '@/components/base/Button';
 import {
   Dialog,
   DialogContent,
@@ -8,8 +8,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '../Dialog';
-import { Input } from '../Input';
+} from '@/components/base/Dialog';
+import { Input } from '@/components/base/Input';
 
 export type EnterFlashcardSetNameProps = {
   children: ReactNode;

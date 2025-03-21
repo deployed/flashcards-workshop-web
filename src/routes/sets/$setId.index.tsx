@@ -1,11 +1,14 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 
-import { loadFlashcardSetDetails, useFlashcardSetDetails } from '@/api/query/flashcards-sets-query';
-import { BackButton } from '@/components/BackButton';
-import { Button } from '@/components/Button';
-import { LogoWithText } from '@/components/LogoWithText';
-import { Page, PageContent } from '@/components/Page';
+import {
+  loadFlashcardSetDetails,
+  useFlashcardSetDetails,
+} from '@/api/query/hooks/useFlashcardSets';
 import { WaveBackground } from '@/components/backgrounds/WaveBackground';
+import { Button } from '@/components/base/Button';
+import { Page, PageContent } from '@/components/base/Page';
+import { LogoWithText } from '@/components/brand/Logo';
+import { BackButton } from '@/components/navigation/BackButton';
 
 export const Route = createFileRoute('/sets/$setId/')({
   component: SetDetailsRoute,

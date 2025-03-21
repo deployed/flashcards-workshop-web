@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import { useIsBreakpoint } from '@/hooks/useIsBreakpoint';
+import { useIsBreakpoint } from '@/lib/styling';
 
 import { DesktopBottomWave } from './desktop/DesktopBottomWave';
 import { DesktopTopWave } from './desktop/DesktopTopWave';
