@@ -6,7 +6,9 @@ export async function flashcardSetsQuery({
   client,
   signal,
 }: QueryFnParams): Promise<FlashcardSet[]> {
-  const response = await client.get<BackendFlashcardSet[]>(Endpoints.flashcards.list(), { signal });
+  const response = await client.get<BackendFlashcardSet[]>(Endpoints.flashcardSets.list(), {
+    signal,
+  });
 
   return response.data.map((set) => ({
     ...set,
@@ -19,7 +21,7 @@ export async function flashcardSetDetails({
   signal,
   id,
 }: QueryFnParams<{ id: string }>): Promise<FlashcardSet> {
-  const response = await client.get<BackendFlashcardSet>(Endpoints.flashcards.details(id), {
+  const response = await client.get<BackendFlashcardSet>(Endpoints.flashcardSets.details(id), {
     signal,
   });
 

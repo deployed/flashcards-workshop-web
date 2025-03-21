@@ -1,5 +1,6 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
+import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 
+import { useDeleteFlashcardSet } from '@/api/mutations/hooks/useFlashcardSetsMutation';
 import {
   loadFlashcardSetDetails,
   useFlashcardSetDetails,
@@ -8,6 +9,7 @@ import { WaveBackground } from '@/components/backgrounds/WaveBackground';
 import { Button } from '@/components/base/Button';
 import { Page, PageContent } from '@/components/base/Page';
 import { LogoWithText } from '@/components/brand/Logo';
+import { ConfirmFlashcardSetDeletion } from '@/components/flashcard-sets/ConfirmFlashcardSetDeletion';
 import { BackButton } from '@/components/navigation/BackButton';
 
 export const Route = createFileRoute('/sets/$setId/')({
@@ -16,8 +18,15 @@ export const Route = createFileRoute('/sets/$setId/')({
 });
 
 function SetDetailsRoute() {
+  const navigate = useNavigate();
   const { setId } = Route.useParams();
   const { data: flashcardSet } = useFlashcardSetDetails({ id: setId });
+  const { mutateAsync: deleteFlashcardSet } = useDeleteFlashcardSet();
+
+  const handleFlashcardSetDeletion = async () => {
+    navigate({ to: '/sets', replace: true });
+    await deleteFlashcardSet({ id: setId });
+  };
 
   return (
     <>
@@ -32,7 +41,9 @@ function SetDetailsRoute() {
                 Edytuj Zestaw
               </Link>
             </Button>
-            <Button size="large">Usuń zestaw</Button>
+            <ConfirmFlashcardSetDeletion onConfirm={handleFlashcardSetDeletion}>
+              <Button size="large">Usuń zestaw</Button>
+            </ConfirmFlashcardSetDeletion>
           </div>
           <BackButton />
         </PageContent>
