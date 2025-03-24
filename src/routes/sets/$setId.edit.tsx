@@ -62,6 +62,7 @@ function FlashcardSetEdit() {
             <Flashcard
               type="front"
               value={editor.flashcardFrontValue}
+              editable
               onChange={(e) => {
                 editor.changeFrontValue(e.target.value);
               }}
@@ -69,6 +70,7 @@ function FlashcardSetEdit() {
             <Flashcard
               type="back"
               value={editor.flashcardBackValue}
+              editable
               onChange={(e) => {
                 editor.changeBackValue(e.target.value);
               }}

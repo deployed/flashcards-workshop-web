@@ -9,3 +9,7 @@
 @utility gap-content {
   @apply gap-5 laptop:gap-10;
 }
+
+@utility backface-hidden {
+  backface-visibility: hidden;
+}

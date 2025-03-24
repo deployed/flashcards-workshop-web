@@ -11,6 +11,7 @@
   --color-muted-foreground: oklch(84.21% 0 0);
   --color-interactive: oklch(97.34% 0.0013 286.38);
   --color-border: oklch(90.14% 0.0011 17.18);
+  --color-destructive: oklch(0.577 0.245 27.325);
 }
 
 /* Typography */

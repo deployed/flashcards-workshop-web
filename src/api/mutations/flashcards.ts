@@ -65,3 +65,47 @@ export async function updateFlashcard({
 
   return response.data;
 }
+
+export type MarkFlashcardAsLearnedParams = {
+  setId: string;
+  flashcardId: string;
+  username: string;
+};
+
+export async function markFlashcardAsLearned({
+  client,
+  signal,
+  setId,
+  flashcardId,
+  username,
+}: QueryFnParams<MarkFlashcardAsLearnedParams>) {
+  await client.post(
+    Endpoints.flashcardSets.for(setId).flashcards.markAsLearned(flashcardId),
+    { user: username },
+    {
+      signal,
+    },
+  );
+}
+
+export type MarkFlashcardAsUnknownParams = {
+  setId: string;
+  flashcardId: string;
+  username: string;
+};
+
+export async function markFlashcardAsUnknown({
+  client,
+  signal,
+  setId,
+  flashcardId,
+  username,
+}: QueryFnParams<MarkFlashcardAsUnknownParams>) {
+  await client.post(
+    Endpoints.flashcardSets.for(setId).flashcards.markAsUnknown(flashcardId),
+    { user: username },
+    {
+      signal,
+    },
+  );
+}

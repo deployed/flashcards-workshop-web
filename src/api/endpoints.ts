@@ -11,6 +11,11 @@ export const Endpoints = {
         details: (flashcardId: string) => `/flash-card-sets/${id}/flash-cards/${flashcardId}/`,
         delete: (flashcardId: string) => `/flash-card-sets/${id}/flash-cards/${flashcardId}/`,
         update: (flashcardId: string) => `/flash-card-sets/${id}/flash-cards/${flashcardId}/`,
+        markAsLearned: (flashcardId: string) =>
+          `/flash-card-sets/${id}/flash-cards/${flashcardId}/mark-as-known/`,
+        markAsUnknown: (flashcardId: string) =>
+          `/flash-card-sets/${id}/flash-cards/${flashcardId}/mark-as-unknown/`,
+        learnSet: () => `/flash-card-sets/${id}/learn/`,
       },
     }),
   },

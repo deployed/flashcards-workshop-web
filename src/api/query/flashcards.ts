@@ -20,3 +20,25 @@ export async function flashcardsInSetQuery({
 
   return response.data;
 }
+
+export type FlashcardLearnSetQueryParams = {
+  setId: string;
+  username: string;
+};
+
+export async function flashcardLearnSetQuery({
+  client,
+  signal,
+  setId,
+  username,
+}: QueryFnParams<FlashcardLearnSetQueryParams>): Promise<Flashcard[]> {
+  const response = await client.get<BackendFlashcard[]>(
+    Endpoints.flashcardSets.for(setId).flashcards.learnSet(),
+    {
+      signal,
+      params: { user: username },
+    },
+  );
+
+  return response.data;
+}

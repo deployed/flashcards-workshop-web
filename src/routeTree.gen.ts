@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as SetsIndexImport } from './routes/sets/index'
 import { Route as SetsSetIdIndexImport } from './routes/sets/$setId.index'
+import { Route as SetsSetIdLearnImport } from './routes/sets/$setId.learn'
 import { Route as SetsSetIdEditImport } from './routes/sets/$setId.edit'
 
 // Create/Update Routes
@@ -33,6 +34,12 @@ const SetsIndexRoute = SetsIndexImport.update({
 const SetsSetIdIndexRoute = SetsSetIdIndexImport.update({
   id: '/sets/$setId/',
   path: '/sets/$setId/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SetsSetIdLearnRoute = SetsSetIdLearnImport.update({
+  id: '/sets/$setId/learn',
+  path: '/sets/$setId/learn',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -67,6 +74,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SetsSetIdEditImport
       parentRoute: typeof rootRoute
     }
+    '/sets/$setId/learn': {
+      id: '/sets/$setId/learn'
+      path: '/sets/$setId/learn'
+      fullPath: '/sets/$setId/learn'
+      preLoaderRoute: typeof SetsSetIdLearnImport
+      parentRoute: typeof rootRoute
+    }
     '/sets/$setId/': {
       id: '/sets/$setId/'
       path: '/sets/$setId'
@@ -83,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/sets': typeof SetsIndexRoute
   '/sets/$setId/edit': typeof SetsSetIdEditRoute
+  '/sets/$setId/learn': typeof SetsSetIdLearnRoute
   '/sets/$setId': typeof SetsSetIdIndexRoute
 }
 
@@ -90,6 +105,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sets': typeof SetsIndexRoute
   '/sets/$setId/edit': typeof SetsSetIdEditRoute
+  '/sets/$setId/learn': typeof SetsSetIdLearnRoute
   '/sets/$setId': typeof SetsSetIdIndexRoute
 }
 
@@ -98,15 +114,32 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/sets/': typeof SetsIndexRoute
   '/sets/$setId/edit': typeof SetsSetIdEditRoute
+  '/sets/$setId/learn': typeof SetsSetIdLearnRoute
   '/sets/$setId/': typeof SetsSetIdIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sets' | '/sets/$setId/edit' | '/sets/$setId'
+  fullPaths:
+    | '/'
+    | '/sets'
+    | '/sets/$setId/edit'
+    | '/sets/$setId/learn'
+    | '/sets/$setId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sets' | '/sets/$setId/edit' | '/sets/$setId'
-  id: '__root__' | '/' | '/sets/' | '/sets/$setId/edit' | '/sets/$setId/'
+  to:
+    | '/'
+    | '/sets'
+    | '/sets/$setId/edit'
+    | '/sets/$setId/learn'
+    | '/sets/$setId'
+  id:
+    | '__root__'
+    | '/'
+    | '/sets/'
+    | '/sets/$setId/edit'
+    | '/sets/$setId/learn'
+    | '/sets/$setId/'
   fileRoutesById: FileRoutesById
 }
 
@@ -114,6 +147,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SetsIndexRoute: typeof SetsIndexRoute
   SetsSetIdEditRoute: typeof SetsSetIdEditRoute
+  SetsSetIdLearnRoute: typeof SetsSetIdLearnRoute
   SetsSetIdIndexRoute: typeof SetsSetIdIndexRoute
 }
 
@@ -121,6 +155,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SetsIndexRoute: SetsIndexRoute,
   SetsSetIdEditRoute: SetsSetIdEditRoute,
+  SetsSetIdLearnRoute: SetsSetIdLearnRoute,
   SetsSetIdIndexRoute: SetsSetIdIndexRoute,
 }
 
@@ -137,6 +172,7 @@ export const routeTree = rootRoute
         "/",
         "/sets/",
         "/sets/$setId/edit",
+        "/sets/$setId/learn",
         "/sets/$setId/"
       ]
     },
@@ -148,6 +184,9 @@ export const routeTree = rootRoute
     },
     "/sets/$setId/edit": {
       "filePath": "sets/$setId.edit.tsx"
+    },
+    "/sets/$setId/learn": {
+      "filePath": "sets/$setId.learn.tsx"
     },
     "/sets/$setId/": {
       "filePath": "sets/$setId.index.tsx"

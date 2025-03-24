@@ -4,6 +4,7 @@ import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 import type { AxiosInstance } from 'axios';
 
 import { TanStackRouterDevtools } from '@/components/development/TanStackRouterDevtools';
+import { UserContextProvider } from '@/data/UserContext';
 
 type RouterContext = {
   queryClient: QueryClient;
@@ -16,12 +17,12 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 
 function RootLayout() {
   return (
-    <>
+    <UserContextProvider>
       <div className="relative flex h-screen max-h-screen flex-col overflow-hidden">
         <Outlet />
       </div>
       <ReactQueryDevtools />
       <TanStackRouterDevtools />
-    </>
+    </UserContextProvider>
   );
 }
