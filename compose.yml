@@ -1,0 +1,11 @@
+services:
+  web:
+    pull_policy: build
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+      args:
+        - VITE_API_URL=${API_URL:-http://localhost:8000}
+    ports:
+      - 8080:80
