@@ -1,5 +1,7 @@
 import type { ChangeEvent } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import { Text } from '@/components/base/Text';
 import { cn } from '@/lib/styling';
 
@@ -12,7 +14,9 @@ export type FlashcardProps = {
 };
 
 export function Flashcard({ type, value, onChange, editable, onClick }: FlashcardProps) {
-  const headerName = type === 'front' ? 'Awers' : 'Rewers';
+  const { t } = useTranslation('common');
+  const headerName = type === 'front' ? t('flashcard.front') : t('flashcard.back');
+
   return (
     <div className="flex flex-col items-start" onClick={onClick}>
       <div className="bg-secondary">

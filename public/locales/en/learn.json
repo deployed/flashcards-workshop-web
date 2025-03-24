@@ -1,0 +1,11 @@
+{
+  "summary": {
+    "title": "Summary",
+    "known": "Known",
+    "toLearn": "To learn",
+    "allKnown": "All known"
+  },
+  "finish": "Finish",
+  "known": "I know",
+  "unknown": "I don't know"
+}

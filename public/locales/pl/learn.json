@@ -1,0 +1,11 @@
+{
+  "summary": {
+    "title": "Podsumowanie",
+    "known": "Znam",
+    "toLearn": "Tyle jeszcze musze powtórzyć",
+    "allKnown": "Wszystkie umiem"
+  },
+  "finish": "Zakończ",
+  "known": "Umiem",
+  "unknown": "Nie umiem"
+}

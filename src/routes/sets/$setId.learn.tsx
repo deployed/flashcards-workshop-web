@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
+import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
 import { useApiClient } from '@/api/apiClient';
@@ -38,7 +39,8 @@ function LearnFlashcards() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [knownCount, setKnownCount] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-
+  const { t } = useTranslation('learn');
+  const { t: tCommon } = useTranslation('common');
   const currentFlashcard = flashcards[currentIndex];
   const isFinished = currentIndex >= flashcards.length;
   const toLearnCount = flashcards.length - knownCount;
@@ -66,30 +68,34 @@ function LearnFlashcards() {
         <WaveBackground variant="top" />
         <Page className="justify-between">
           <div className="flex flex-col items-center gap-content">
-            <Text className="text-3xl">Podsumowanie</Text>
+            <Text className="text-3xl laptop:text-5xl">{t('summary.title')}</Text>
           </div>
-          <div className="flex flex-col gap-content">
-            <div className="flex flex-col gap-content">
-              <Text variant="emphasis">Umiem</Text>
-              <Text>
-                {knownCount} z {flashcards.length}
+          <div className="mx-12 flex flex-col gap-content self-start laptop:self-center">
+            <div className="flex flex-col items-start gap-content">
+              <Text variant="emphasis" className="laptop:text-4xl">
+                {t('summary.known')}
+              </Text>
+              <Text className="text-xl">
+                {knownCount} {tCommon('of')} {flashcards.length}
               </Text>
             </div>
             <div className="flex flex-col gap-content">
-              <Text variant="emphasis">Tyle jeszcze musze powtórzyć</Text>
+              <Text variant="emphasis" className="laptop:text-4xl">
+                {t('summary.toLearn')}
+              </Text>
               {toLearnCount > 0 ? (
-                <Text>
-                  {toLearnCount} z {flashcards.length - knownCount}
+                <Text className="text-xl">
+                  {toLearnCount} {tCommon('of')} {flashcards.length - knownCount}
                 </Text>
               ) : (
-                <Text>Wszystko umiem</Text>
+                <Text className="text-xl">{t('summary.allKnown')}</Text>
               )}
             </div>
           </div>
 
           <Button asChild>
             <Link to="/sets" replace>
-              Zakończ
+              {t('finish')}
             </Link>
           </Button>
         </Page>
@@ -128,8 +134,8 @@ function LearnFlashcards() {
             visible: shownFace === 'back',
           })}
         >
-          <Button onClick={() => handleAnswer('known')}>Znam</Button>
-          <Button onClick={() => handleAnswer('unknown')}>Nie znam</Button>
+          <Button onClick={() => handleAnswer('known')}>{t('known')}</Button>
+          <Button onClick={() => handleAnswer('unknown')}>{t('unknown')}</Button>
         </div>
         <BackButton />
       </Page>

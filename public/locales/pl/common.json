@@ -1,0 +1,11 @@
+{
+  "logo": {
+    "title": "Fiszki"
+  },
+  "back": "Powrót",
+  "flashcard": {
+    "front": "Awers",
+    "back": "Rewers"
+  },
+  "of": "z"
+}

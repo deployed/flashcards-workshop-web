@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom/client';
 import { queryClient } from '@/api/queryClient';
 
 import { createApiClient } from './api/apiClient';
+import './i18n';
 // Import the generated route tree
 import { routeTree } from './routeTree.gen';
 import './styles/main.css';

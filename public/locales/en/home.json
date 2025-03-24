@@ -1,0 +1,10 @@
+{
+  "createFlashcardSet": {
+    "title": "Create your flashcard set from scratch",
+    "button": "Start Here"
+  },
+  "testYourKnowledge": {
+    "title": "Having already created flashcards, take on the challenge and check what you've learned",
+    "button": "Test Yourself"
+  }
+}

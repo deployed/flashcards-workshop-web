@@ -1,0 +1,11 @@
+{
+  "logo": {
+    "title": "Flashcards"
+  },
+  "back": "Back",
+  "flashcard": {
+    "front": "Front",
+    "back": "Back"
+  },
+  "of": "of"
+}

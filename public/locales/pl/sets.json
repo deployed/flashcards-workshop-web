@@ -1,0 +1,28 @@
+{
+  "title": "Wybierz zestaw fiszek do nauki i sprawdź się",
+  "createNewSet": "Utwórz nowy zestaw",
+  "dialog": {
+    "deleteSet": {
+      "title": "Czy na pewno chcesz usunąć zestaw fiszek?",
+      "cancel": "Anuluj",
+      "delete": "Usuń"
+    },
+    "pickName": {
+      "title": "Wybierz nazwę dla swojego zestawu fiszek",
+      "placeholder": "Nazwa zestawu fiszek",
+      "create": "Utwórz",
+      "cancel": "Anuluj"
+    },
+    "enterUsername": {
+      "title": "Wpisz swoje imię",
+      "name": "Imię",
+      "save": "Zapisz",
+      "nameIsRequired": "Imię jest wymagane"
+    }
+  },
+  "setDetails": {
+    "checkYourKnowledge": "Sprawdź swoją wiedzę",
+    "edit": "Edytuj",
+    "delete": "Usuń"
+  }
+}

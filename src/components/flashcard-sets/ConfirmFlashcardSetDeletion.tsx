@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import {
   AlertDialog,
   AlertDialogContent,
@@ -20,16 +22,18 @@ export function ConfirmFlashcardSetDeletion({
   children,
   onConfirm,
 }: ConfirmFlashcardSetDeletionProps) {
+  const { t } = useTranslation('sets');
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Czy na pewno chcesz usunąć zestaw fiszek?</AlertDialogTitle>
+          <AlertDialogTitle>{t('dialog.deleteSet.title')}</AlertDialogTitle>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Anuluj</AlertDialogCancel>
-          <AlertDialogAction onClick={onConfirm}>Usuń</AlertDialogAction>
+          <AlertDialogCancel>{t('dialog.deleteSet.cancel')}</AlertDialogCancel>
+          <AlertDialogAction onClick={onConfirm}>{t('dialog.deleteSet.delete')}</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

@@ -1,0 +1,28 @@
+{
+  "title": "Select a flashcard set to learn and test yourself",
+  "createNewSet": "Create new set",
+  "dialog": {
+    "deleteSet": {
+      "title": "Are you sure you want to delete this flashcard set?",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    },
+    "pickName": {
+      "title": "Pick a name for your flashcard set",
+      "placeholder": "Flashcard set name",
+      "create": "Create",
+      "cancel": "Cancel"
+    },
+    "enterUsername": {
+      "title": "Enter your name",
+      "name": "Name",
+      "save": "Save",
+      "nameIsRequired": "Name is required"
+    }
+  },
+  "setDetails": {
+    "checkYourKnowledge": "Check your knowledge",
+    "edit": "Edit",
+    "delete": "Delete"
+  }
+}

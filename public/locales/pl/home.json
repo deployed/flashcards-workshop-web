@@ -1,0 +1,10 @@
+{
+  "createFlashcardSet": {
+    "title": "Stwórz swój zestaw fiszek od zera",
+    "button": "Zacznij Tutaj"
+  },
+  "testYourKnowledge": {
+    "title": "Mając już stworzone fiszki, podejmij wyzwanie i sprawdź czego się nauczyłeś",
+    "button": "Sprawdź się"
+  }
+}

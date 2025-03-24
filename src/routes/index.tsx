@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 
 import { WaveBackground } from '@/components/backgrounds/WaveBackground';
 import { Button } from '@/components/base/Button';
@@ -11,6 +12,8 @@ export const Route = createFileRoute('/')({
 });
 
 function HomeRoute() {
+  const { t } = useTranslation('home');
+
   return (
     <>
       <WaveBackground variant="home" />
@@ -18,17 +21,15 @@ function HomeRoute() {
         <Logo />
         <div className="mx-12 my-20 flex flex-col gap-16 laptop:my-44 laptop:gap-28">
           <div className="flex flex-col items-center gap-content">
-            <Text className="laptop:text-3xl">Stwórz swój zestaw fiszek od zera</Text>
+            <Text className="laptop:text-3xl">{t('createFlashcardSet.title')}</Text>
             <CreateFlashcardSet>
-              <Button>Zacznij Tutaj</Button>
+              <Button>{t('createFlashcardSet.button')}</Button>
             </CreateFlashcardSet>
           </div>
           <div className="flex flex-col items-center gap-content">
-            <Text className="text-center laptop:text-3xl">
-              Mając już stworzone fiszki, podejmij wyzwanie i sprawdź czego się nauczyłeś
-            </Text>
+            <Text className="text-center laptop:text-3xl">{t('testYourKnowledge.title')}</Text>
             <Button asChild>
-              <Link to="/sets">Sprawdź się</Link>
+              <Link to="/sets">{t('testYourKnowledge.button')}</Link>
             </Button>
           </div>
         </div>

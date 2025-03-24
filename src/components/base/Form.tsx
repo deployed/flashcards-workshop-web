@@ -9,6 +9,7 @@ import {
   type FieldPath,
   type FieldValues,
 } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { Label } from '@/components/base/Label';
 import { cn } from '@/lib/styling';
@@ -113,6 +114,7 @@ export function FormMessage({
   ...props
 }: HTMLAttributes<HTMLParagraphElement>) {
   const { error, formMessageId } = useFormField();
+  const { t } = useTranslation('sets');
   const body = error ? String(error?.message ?? '') : children;
 
   if (!body) {
@@ -125,7 +127,7 @@ export function FormMessage({
       className={cn('text-sm font-medium text-destructive', className)}
       {...props}
     >
-      {body}
+      {t(body as string)}
     </p>
   );
 }

@@ -2,6 +2,7 @@ import { useState, type ReactNode } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
 import { Button } from '@/components/base/Button';
@@ -24,7 +25,7 @@ import { Input } from '@/components/base/Input';
 import { useUserContext } from '@/data/UserContext';
 
 const formSchema = z.object({
-  username: z.string().min(1, { message: 'Imię jest wymagane' }),
+  username: z.string().min(1, { message: 'dialog.enterUsername.nameIsRequired' }),
 });
 type FormSchema = z.infer<typeof formSchema>;
 
@@ -36,6 +37,7 @@ export type EnterUsernameProps = {
 export function EnterUsername({ children, onNameChosen }: EnterUsernameProps) {
   const [dialogOpen, setDialogOpen] = useState(false);
   const { username, setUsername } = useUserContext();
+  const { t } = useTranslation('sets');
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -54,7 +56,7 @@ export function EnterUsername({ children, onNameChosen }: EnterUsernameProps) {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Podaj swoje imię</DialogTitle>
+          <DialogTitle>{t('dialog.enterUsername.title')}</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -63,7 +65,7 @@ export function EnterUsername({ children, onNameChosen }: EnterUsernameProps) {
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Imię</FormLabel>
+                  <FormLabel>{t('dialog.enterUsername.name')}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -72,7 +74,7 @@ export function EnterUsername({ children, onNameChosen }: EnterUsernameProps) {
               )}
             />
             <Button type="submit" className="w-full">
-              Zapisz
+              {t('dialog.enterUsername.save')}
             </Button>
           </form>
         </Form>

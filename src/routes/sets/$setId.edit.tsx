@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 
 import { loadFlashcards } from '@/api/query/hooks/useFlashcards';
 import { WaveBackground } from '@/components/backgrounds/WaveBackground';
@@ -20,7 +21,7 @@ function FlashcardSetEdit() {
   const { setId } = Route.useParams();
   const editor = useFlashcardSetEditor({ id: setId });
   const isLaptop = useIsBreakpoint('laptop');
-
+  const { t } = useTranslation('edit');
   const onFinish = () => {
     void editor.saveFlashcard();
   };
@@ -50,11 +51,11 @@ function FlashcardSetEdit() {
       <WaveBackground variant="bottom" />
       <Page>
         <div className="flex flex-col items-center gap-content">
-          <Text>Fiszka</Text>
-          <Text variant="emphasis">
-            {editor.currentIndex + 1} z {editor.flashcardCount}
+          <Text className="laptop:text-4xl">Fiszka</Text>
+          <Text variant="emphasis" className="laptop:text-4xl">
+            {editor.currentIndex + 1} {t('of')} {editor.flashcardCount}
           </Text>
-          <Text>Wpisz obydwie karteczki</Text>
+          <Text className="laptop:text-4xl">{t('fillBothCards')}</Text>
         </div>
         <div>
           <div className="flex flex-col items-center gap-content md:flex-row">
@@ -91,9 +92,9 @@ function FlashcardSetEdit() {
             onClick={editor.deleteFlashcard}
             disabled={!editor.canDeleteFlashcard}
           >
-            Usuń
+            {t('delete')}
           </Button>
-          <BackButton onClick={onFinish}>Zakończ</BackButton>
+          <BackButton onClick={onFinish}>{t('finish')}</BackButton>
         </div>
       </Page>
     </>

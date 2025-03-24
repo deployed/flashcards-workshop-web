@@ -1,4 +1,5 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 
 import { useDeleteFlashcardSet } from '@/api/mutations/hooks/useFlashcardSetsMutation';
 import {
@@ -27,6 +28,7 @@ export const Route = createFileRoute('/sets/$setId/')({
 function SetDetailsRoute() {
   const navigate = useNavigate();
   const { setId } = Route.useParams();
+  const { t } = useTranslation('sets');
   const { data: flashcardSet } = useFlashcardSetDetails({ id: setId });
   const { data: flashcards } = useFlashcardsQuery({ setId });
   const { mutateAsync: deleteFlashcardSet } = useDeleteFlashcardSet();
@@ -51,16 +53,16 @@ function SetDetailsRoute() {
           <div className="flex flex-col gap-content">
             <EnterUsername onNameChosen={handleNameChosen}>
               <Button size="large" disabled={flashcardsCount === 0}>
-                Sprawdź się
+                {t('setDetails.checkYourKnowledge')}
               </Button>
             </EnterUsername>
             <Button size="large" asChild>
               <Link to="/sets/$setId/edit" params={{ setId }}>
-                Edytuj Zestaw
+                {t('setDetails.edit')}
               </Link>
             </Button>
             <ConfirmFlashcardSetDeletion onConfirm={handleFlashcardSetDeletion}>
-              <Button size="large">Usuń zestaw</Button>
+              <Button size="large">{t('setDetails.delete')}</Button>
             </ConfirmFlashcardSetDeletion>
           </div>
           <BackButton />

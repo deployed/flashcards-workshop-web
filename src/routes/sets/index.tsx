@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 
 import { loadFlashcardSets, useFlashcardSetsQuery } from '@/api/query/hooks/useFlashcardSets';
 import { WaveBackground } from '@/components/backgrounds/WaveBackground';
@@ -17,12 +18,13 @@ export const Route = createFileRoute('/sets/')({
 
 function SetListRoute() {
   const { data } = useFlashcardSetsQuery();
+  const { t } = useTranslation('sets');
 
   return (
     <>
       <WaveBackground variant="bottom" />
       <Page>
-        <LogoWithText>Wybierz zestaw fiszek do nauki i sprawdź się</LogoWithText>
+        <LogoWithText>{t('title')}</LogoWithText>
         <PageContent className="gap-16">
           <div className="flex min-h-0 grow flex-col justify-start gap-content">
             <ScrollArea scrollbarAlwaysVisible className="h-3/4 min-h-[350px]">
@@ -39,7 +41,7 @@ function SetListRoute() {
 
             <CreateFlashcardSet>
               <Text variant="emphasis" className="text-center">
-                Lub stwórz nowe fiszki
+                {t('createNewSet')}
               </Text>
             </CreateFlashcardSet>
           </div>

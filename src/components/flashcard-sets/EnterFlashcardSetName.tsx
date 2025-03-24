@@ -1,5 +1,7 @@
 import { type ReactNode, useId, useState, useEffect } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import { Button } from '@/components/base/Button';
 import {
   Dialog,
@@ -20,7 +22,7 @@ export function EnterFlashcardSetName({ children, onSetName }: EnterFlashcardSet
   const [dialogOpen, setDialogOpen] = useState(false);
   const [name, setName] = useState('');
   const formId = useId();
-
+  const { t } = useTranslation('sets');
   useEffect(() => {
     if (dialogOpen) {
       // Reset the name when the dialog is opened
@@ -33,7 +35,7 @@ export function EnterFlashcardSetName({ children, onSetName }: EnterFlashcardSet
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Podaj nazwe zestawu</DialogTitle>
+          <DialogTitle>{t('dialog.pickName.title')}</DialogTitle>
         </DialogHeader>
         <form
           id={formId}
@@ -44,7 +46,7 @@ export function EnterFlashcardSetName({ children, onSetName }: EnterFlashcardSet
           }}
         >
           <Input
-            placeholder="Nazwa zestawu fiszek"
+            placeholder={t('dialog.pickName.placeholder')}
             value={name}
             onChange={(e) => {
               setName(e.target.value);
@@ -54,10 +56,10 @@ export function EnterFlashcardSetName({ children, onSetName }: EnterFlashcardSet
 
         <DialogFooter className="flex flex-row justify-between">
           <Button variant="outlined" onClick={() => setDialogOpen(false)}>
-            Anuluj
+            {t('dialog.pickName.cancel')}
           </Button>
           <Button type="submit" form={formId}>
-            Stwórz
+            {t('dialog.pickName.create')}
           </Button>
         </DialogFooter>
       </DialogContent>
