@@ -18,13 +18,13 @@ function HomeRoute() {
         <Logo />
         <div className="mx-12 my-20 flex flex-col gap-16 laptop:my-44 laptop:gap-28">
           <div className="flex flex-col items-center gap-content">
-            <Text>Stwórz swój zestaw fiszek od zera</Text>
+            <Text className="laptop:text-3xl">Stwórz swój zestaw fiszek od zera</Text>
             <CreateFlashcardSet>
               <Button>Zacznij Tutaj</Button>
             </CreateFlashcardSet>
           </div>
           <div className="flex flex-col items-center gap-content">
-            <Text className="text-center">
+            <Text className="text-center laptop:text-3xl">
               Mając już stworzone fiszki, podejmij wyzwanie i sprawdź czego się nauczyłeś
             </Text>
             <Button asChild>

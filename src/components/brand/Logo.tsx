@@ -24,7 +24,9 @@ export function LogoWithText({ children }: LogoWithTestProps) {
   return (
     <div className="flex flex-col items-center gap-content">
       <Logo />
-      <Text className="max-w-[200px] text-center laptop:max-w-full">{children}</Text>
+      <Text className="max-w-[200px] text-center laptop:max-w-full laptop:text-3xl">
+        {children}
+      </Text>
     </div>
   );
 }

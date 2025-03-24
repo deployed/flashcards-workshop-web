@@ -26,7 +26,7 @@ export function Flashcard({ type, value, onChange, editable, onClick }: Flashcar
         onChange={onChange}
         disabled={!editable}
         className={cn(
-          'flex h-[130px] w-[270px] flex-col items-start border-2 text-center drop-shadow-lg',
+          'flex h-[130px] w-[270px] flex-col items-start border-2 text-center drop-shadow-lg laptop:h-[180px] laptop:w-[350px]',
           'focus-visible:ring-2 focus-visible:ring-secondary/70 focus-visible:outline-none',
           {
             'border-card-primary/70 bg-card-primary': type === 'front',
