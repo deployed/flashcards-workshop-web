@@ -8,7 +8,7 @@ export function Page({ children, className, ...rest }: PageProps) {
   return (
     <main
       className={cn(
-        'relative flex h-full max-h-full flex-col items-center justify-start gap-8 py-15 laptop:gap-48',
+        'relative flex h-full max-h-full flex-col items-center justify-start gap-8 py-15 laptop:gap-[8vh]',
         className,
       )}
       {...rest}
