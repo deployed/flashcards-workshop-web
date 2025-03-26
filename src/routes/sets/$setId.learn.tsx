@@ -50,8 +50,9 @@ function LearnFlashcards() {
     if (answer === 'known') {
       setKnownCount(knownCount + 1);
       void markFlashcardAsLearned({ client, flashcardId: flashcardId.toString(), username, setId });
+    } else {
+      void markFlashcardAsUnknown({ client, flashcardId: flashcardId.toString(), username, setId });
     }
-    void markFlashcardAsUnknown({ client, flashcardId: flashcardId.toString(), username, setId });
     setCurrentIndex(currentIndex + 1);
     setIsAnimating(false);
     setShownFace('front');
