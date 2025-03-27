@@ -9,9 +9,10 @@
     },
     "pickName": {
       "title": "Wybierz nazwę dla swojego zestawu fiszek",
-      "placeholder": "Nazwa zestawu fiszek",
+      "name": "Nazwa zestawu fiszek",
       "create": "Utwórz",
-      "cancel": "Anuluj"
+      "cancel": "Anuluj",
+      "nameIsRequired": "Nazwa jest wymagana"
     },
     "enterUsername": {
       "title": "Wpisz swoje imię",

@@ -9,9 +9,10 @@
     },
     "pickName": {
       "title": "Pick a name for your flashcard set",
-      "placeholder": "Flashcard set name",
+      "name": "Flashcard set name",
       "create": "Create",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "nameIsRequired": "Name is required"
     },
     "enterUsername": {
       "title": "Enter your name",
