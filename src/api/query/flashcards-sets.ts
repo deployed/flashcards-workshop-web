@@ -1,5 +1,5 @@
 import { Endpoints } from '../endpoints';
-import type { BackendFlashcardSet, FlashcardSet } from '../schema';
+import type { BackendFlashcardSet, FlashcardSet, FlashcardSetCounters } from '../schema';
 import type { QueryFnParams } from '../types';
 
 export async function flashcardSetsQuery({
@@ -10,10 +10,7 @@ export async function flashcardSetsQuery({
     signal,
   });
 
-  return response.data.map((set) => ({
-    ...set,
-    isActive: set.is_active,
-  }));
+  return response.data;
 }
 
 export type FlashcardDetailsQueryParams = {
@@ -29,8 +26,24 @@ export async function flashcardSetDetails({
     signal,
   });
 
-  return {
-    ...response.data,
-    isActive: response.data.is_active,
-  };
+  return response.data;
+}
+
+export type FlashcardSetCountersQueryParams = {
+  id: string;
+  username: string;
+};
+
+export async function flashcardSetCounters({
+  client,
+  signal,
+  id,
+  username,
+}: QueryFnParams<FlashcardSetCountersQueryParams>): Promise<FlashcardSetCounters> {
+  const response = await client.get<FlashcardSetCounters>(Endpoints.flashcardSets.counters(id), {
+    signal,
+    params: { user: username },
+  });
+
+  return response.data;
 }

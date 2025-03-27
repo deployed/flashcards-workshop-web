@@ -8,6 +8,7 @@ import { z } from 'zod';
 import { useApiClient } from '@/api/apiClient';
 import { markFlashcardAsLearned, markFlashcardAsUnknown } from '@/api/mutations/flashcards';
 import { flashcardLearnSetQuery } from '@/api/query/flashcards';
+import { flashcardSetCounters } from '@/api/query/flashcards-sets';
 import { WaveBackground } from '@/components/backgrounds/WaveBackground';
 import { Button } from '@/components/base/Button';
 import { Page } from '@/components/base/Page';
@@ -37,21 +38,26 @@ function LearnFlashcards() {
   const { username } = Route.useSearch();
   const [shownFace, setShownFace] = useState<'front' | 'back'>('front');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [knownCount, setKnownCount] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const { t } = useTranslation('learn');
   const { t: tCommon } = useTranslation('common');
+  const [knownCount, setKnownCount] = useState(0);
+  const [unknownCount, setUnknownCount] = useState(0);
   const currentFlashcard = flashcards[currentIndex];
   const isFinished = currentIndex >= flashcards.length;
-  const toLearnCount = flashcards.length - knownCount;
 
-  const handleAnswer = (answer: 'known' | 'unknown') => {
+  const handleAnswer = async (answer: 'known' | 'unknown') => {
+    const isLastFlashcard = currentIndex == flashcards.length - 1;
     const flashcardId = currentFlashcard.id;
     if (answer === 'known') {
-      setKnownCount(knownCount + 1);
       void markFlashcardAsLearned({ client, flashcardId: flashcardId.toString(), username, setId });
     } else {
       void markFlashcardAsUnknown({ client, flashcardId: flashcardId.toString(), username, setId });
+    }
+    if (isLastFlashcard) {
+      const counters = await flashcardSetCounters({ client, id: setId, username });
+      setKnownCount(counters.known);
+      setUnknownCount(counters.unknown);
     }
     setCurrentIndex(currentIndex + 1);
     setIsAnimating(false);
@@ -84,9 +90,9 @@ function LearnFlashcards() {
               <Text variant="emphasis" className="laptop:text-4xl">
                 {t('summary.toLearn')}
               </Text>
-              {toLearnCount > 0 ? (
+              {unknownCount > 0 ? (
                 <Text className="text-xl">
-                  {toLearnCount} {tCommon('of')} {flashcards.length - knownCount}
+                  {unknownCount} {tCommon('of')} {flashcards.length}
                 </Text>
               ) : (
                 <Text className="text-xl">{t('summary.allKnown')}</Text>

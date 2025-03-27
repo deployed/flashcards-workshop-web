@@ -2,7 +2,7 @@ import { Endpoints } from '@/api/endpoints';
 import type { BackendFlashcard, CreateFlashcardPayload } from '@/api/schema';
 import type { QueryFnParams } from '@/api/types';
 
-export type CreateFlashcard = Omit<CreateFlashcardPayload, 'flashcard_set'>;
+export type CreateFlashcard = Omit<CreateFlashcardPayload, 'flashcardSet'>;
 export type CreateFlashcardParams = {
   data: CreateFlashcard;
   setId: string;
@@ -18,7 +18,7 @@ export async function createFlashcard({
     Endpoints.flashcardSets.for(setId).flashcards.create(),
     {
       ...data,
-      flashcard_set: setId,
+      flashcardSet: setId,
     } satisfies CreateFlashcardPayload,
     { signal },
   );
@@ -42,7 +42,7 @@ export async function deleteFlashcard({
   });
 }
 
-export type UpdateFlashcard = Omit<CreateFlashcardPayload, 'flashcard_set'>;
+export type UpdateFlashcard = Omit<CreateFlashcardPayload, 'flashcardSet'>;
 
 export type UpdateFlashcardParams = {
   data: UpdateFlashcard;
@@ -59,7 +59,7 @@ export async function updateFlashcard({
 }: QueryFnParams<UpdateFlashcardParams>) {
   const response = await client.put<BackendFlashcard>(
     Endpoints.flashcardSets.for(setId).flashcards.update(flashcardId),
-    { ...data, flashcard_set: setId } satisfies CreateFlashcardPayload,
+    { ...data, flashcardSet: setId } satisfies CreateFlashcardPayload,
     { signal },
   );
 

@@ -6,7 +6,6 @@ import {
   loadFlashcardSetDetails,
   useFlashcardSetDetails,
 } from '@/api/query/hooks/useFlashcardSets';
-import { loadFlashcards, useFlashcardsQuery } from '@/api/query/hooks/useFlashcards';
 import { WaveBackground } from '@/components/backgrounds/WaveBackground';
 import { Button } from '@/components/base/Button';
 import { Page, PageContent } from '@/components/base/Page';
@@ -17,12 +16,7 @@ import { BackButton } from '@/components/navigation/BackButton';
 
 export const Route = createFileRoute('/sets/$setId/')({
   component: SetDetailsRoute,
-  loader: async ({ context, params }) => {
-    await Promise.all([
-      loadFlashcardSetDetails({ ...context, id: params.setId }),
-      loadFlashcards({ ...context, setId: params.setId }),
-    ]);
-  },
+  loader: async ({ context, params }) => loadFlashcardSetDetails({ ...context, id: params.setId }),
 });
 
 function SetDetailsRoute() {
@@ -30,10 +24,7 @@ function SetDetailsRoute() {
   const { setId } = Route.useParams();
   const { t } = useTranslation('sets');
   const { data: flashcardSet } = useFlashcardSetDetails({ id: setId });
-  const { data: flashcards } = useFlashcardsQuery({ setId });
   const { mutateAsync: deleteFlashcardSet } = useDeleteFlashcardSet();
-
-  const flashcardsCount = flashcards.length;
 
   const handleFlashcardSetDeletion = async () => {
     navigate({ to: '/sets', replace: true });
@@ -52,7 +43,7 @@ function SetDetailsRoute() {
         <PageContent>
           <div className="flex flex-col gap-content">
             <EnterUsername onNameChosen={handleNameChosen}>
-              <Button size="large" disabled={flashcardsCount === 0}>
+              <Button size="large" disabled={flashcardSet.flashcardCount === 0}>
                 {t('setDetails.checkYourKnowledge')}
               </Button>
             </EnterUsername>

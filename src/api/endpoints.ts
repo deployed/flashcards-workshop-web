@@ -4,6 +4,7 @@ export const Endpoints = {
     create: () => '/flash-card-sets/',
     details: (id: string) => `/flash-card-sets/${id}/`,
     delete: (id: string) => `/flash-card-sets/${id}/`,
+    counters: (id: string) => `/flash-card-sets/${id}/counters/`,
     for: (id: string) => ({
       flashcards: {
         list: () => `/flash-card-sets/${id}/flash-cards/`,

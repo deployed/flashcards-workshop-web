@@ -13,10 +13,7 @@ export async function createFlashcardSet({
     signal,
   });
 
-  return {
-    ...response.data,
-    isActive: response.data.is_active,
-  };
+  return response.data;
 }
 
 export type DeleteFlashcardSetParams = { id: string };
