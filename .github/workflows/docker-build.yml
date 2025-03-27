@@ -43,7 +43,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:local
           build-args: |
-            VITE_API_URL=http://localhost:8000
+            VITE_API_URL=http://localhost:8000/api
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
